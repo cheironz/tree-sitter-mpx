@@ -1,13 +1,33 @@
 ================================================================================
-Interpolations - Text (https://vuejs.org/v2/guide/syntax.html#Text)
+MPX 基础组件结构
 ================================================================================
-
 <template>
-
-<span>Message: {{ msg }}</span>
-<span v-once>This will never change: {{ msg }}</span>
-
+  <view class="container">
+    <text>Hello MPX</text>
+  </view>
 </template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+
+createComponent({
+  data: {
+    message: 'Hello MPX'
+  }
+})
+</script>
+
+<style>
+.container {
+  padding: 20rpx;
+}
+</style>
+
+<script type="application/json">
+{
+  "navigationBarTitleText": "MPX Page"
+}
+</script>
 
 --------------------------------------------------------------------------------
 
@@ -18,37 +38,75 @@ Interpolations - Text (https://vuejs.org/v2/guide/syntax.html#Text)
     (text)
     (element
       (start_tag
-        (tag_name))
+        (tag_name)
+        (attribute
+          (attribute_name)
+          (quoted_attribute_value
+            (attribute_value))))
       (text)
-      (interpolation
-        (raw_text))
+      (element
+        (start_tag
+          (tag_name))
+        (text)
+        (end_tag
+          (tag_name)))
+      (text)
       (end_tag
         (tag_name)))
     (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)))
-      (text)
-      (interpolation
-        (raw_text))
-      (end_tag
-        (tag_name)))
+    (end_tag
+      (tag_name)))
+  (script_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (style_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (json_config_element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
     (text)
     (end_tag
       (tag_name))))
 
 ================================================================================
-Interpolations - Raw HTML (https://vuejs.org/v2/guide/syntax.html#Raw-HTML)
+MPX 小程序指令 - 条件渲染
 ================================================================================
-
 <template>
-
-<p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
-
+  <view>
+    <text wx:if="{{showText}}">显示文本</text>
+    <text wx:elif="{{showElseIf}}">否则如果</text>
+    <text wx:else>否则</text>
+  </view>
 </template>
+
+<script>
+createComponent({
+  data: {
+    showText: true,
+    showElseIf: false
+  }
+})
+</script>
+
+<style>
+</style>
+
+<script type="application/json">
+{
+  "navigationBarTitleText": "条件渲染"
+}
+</script>
 
 --------------------------------------------------------------------------------
 
@@ -60,11 +118,394 @@ Interpolations - Raw HTML (https://vuejs.org/v2/guide/syntax.html#Raw-HTML)
     (element
       (start_tag
         (tag_name))
+      (element
+        (start_tag
+          (tag_name)
+          (wx_directive_attribute
+            (directive_name)
+            (quoted_attribute_value
+              (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+      (element
+        (start_tag
+          (tag_name)
+          (wx_directive_attribute
+            (directive_name)
+            (quoted_attribute_value
+              (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+      (element
+        (start_tag
+          (tag_name)
+          (wx_directive_attribute
+            (directive_name)))
+        (text)
+        (end_tag
+          (tag_name)))
       (text)
-      (interpolation
-        (raw_text))
       (end_tag
         (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (script_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (style_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (json_config_element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
+    (text)
+    (end_tag
+      (tag_name))))
+
+================================================================================
+MPX 小程序指令 - 列表渲染
+================================================================================
+<template>
+  <view>
+    <view wx:for="{{items}}" wx:key="id">
+      <text>{{index}}: {{item.name}}</text>
+    </view>
+  </view>
+</template>
+
+<script>
+createComponent({
+  data: {
+    items: [
+      { id: 1, name: 'Item 1' },
+      { id: 2, name: 'Item 2' }
+    ]
+  }
+})
+</script>
+
+<style>
+</style>
+
+<script type="application/json">
+{
+  "navigationBarTitleText": "列表渲染"
+}
+</script>
+
+--------------------------------------------------------------------------------
+
+(component
+  (template_element
+    (start_tag
+      (tag_name))
+    (text)
+    (element
+      (start_tag
+        (tag_name))
+      (repeat
+        (element
+          (start_tag
+            (tag_name)
+            (wx_directive_attribute
+              (directive_name)
+              (quoted_attribute_value
+                (attribute_value)))
+            (wx_directive_attribute
+              (directive_name)
+              (quoted_attribute_value
+                (attribute_value))))
+          (text)
+          (element
+            (start_tag
+              (tag_name))
+            (interpolation
+              (raw_text))
+            (text)
+            (interpolation
+              (raw_text))
+            (end_tag
+              (tag_name)))
+          (text)
+          (end_tag
+            (tag_name))))
+      (text)
+      (end_tag
+        (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (script_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (style_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (json_config_element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
+    (text)
+    (end_tag
+      (tag_name))))
+
+================================================================================
+MPX 事件绑定
+================================================================================
+<template>
+  <view>
+    <button bindtap="handleTap">点击我</button>
+    <button catchtap="handleCatch">捕获阻止</button>
+    <input bindinput="handleInput" />
+  </view>
+</template>
+
+<script>
+createComponent({
+  methods: {
+    handleTap() {
+      console.log('tapped')
+    },
+    handleCatch() {
+      console.log('catch tapped')
+    },
+    handleInput(e) {
+      console.log('input:', e.detail.value)
+    }
+  }
+})
+</script>
+
+<style>
+</style>
+
+<script type="application/json">
+{
+  "navigationBarTitleText": "事件绑定"
+}
+</script>
+
+--------------------------------------------------------------------------------
+
+(component
+  (template_element
+    (start_tag
+      (tag_name))
+    (text)
+    (element
+      (start_tag
+        (tag_name)
+        (event_binding
+          (event_name)
+          (quoted_attribute_value
+            (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+    (text)
+    (element
+      (start_tag
+        (tag_name)
+        (event_binding
+          (event_name)
+          (quoted_attribute_value
+            (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+    (text)
+    (element
+      (start_tag
+        (tag_name)
+        (event_binding
+          (event_name)
+          (quoted_attribute_value
+            (attribute_value))))
+      (text)
+      (end_tag
+        (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (script_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (style_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (json_config_element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
+    (text)
+    (end_tag
+      (tag_name))))
+
+================================================================================
+MPX 跨平台条件编译 - 模板
+================================================================================
+<template mode="ali">
+  <button onTap="handleTap">支付宝按钮</button>
+</template>
+
+<template mode="weixin">
+  <button bindtap="handleTap">微信按钮</button>
+</template>
+
+<script>
+createComponent({
+  methods: {
+    handleTap() {
+      console.log('button tapped')
+    }
+  }
+})
+</script>
+
+<style>
+</style>
+
+<script type="application/json">
+{
+  "navigationBarTitleText": "跨平台"
+}
+</script>
+
+--------------------------------------------------------------------------------
+
+(component
+  (template_element
+    (start_tag
+      (tag_name)
+      (mode_attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
+    (text)
+    (element
+      (start_tag
+        (tag_name)
+        (event_binding
+          (event_name)
+          (quoted_attribute_value
+            (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (template_element
+    (start_tag
+      (tag_name)
+      (mode_attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
+    (text)
+    (element
+      (start_tag
+        (tag_name)
+        (event_binding
+          (event_name)
+          (quoted_attribute_value
+            (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (script_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (style_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (json_config_element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
+    (text)
+    (end_tag
+      (tag_name))))
+
+================================================================================
+MPX 配置块 - CommonJS 模式
+================================================================================
+<template>
+  <view>
+    <text>Hello CommonJS Config</text>
+  </view>
+</template>
+
+<script>
+createComponent({
+  data: {
+    message: 'Hello CommonJS Config'
+  }
+})
+</script>
+
+<style>
+</style>
+
+<script name="json">
+module.exports = {
+  "navigationBarTitleText": "CommonJS Config",
+  "usingComponents": {}
+}
+</script>
+
+--------------------------------------------------------------------------------
+
+(component
+  (template_element
+    (start_tag
+      (tag_name))
     (text)
     (element
       (start_tag
@@ -72,29 +513,74 @@ Interpolations - Raw HTML (https://vuejs.org/v2/guide/syntax.html#Raw-HTML)
       (text)
       (element
         (start_tag
-          (tag_name)
-          (directive_attribute
-            (directive_name)
-            (quoted_attribute_value
-              (attribute_value))))
+          (tag_name))
+        (text)
         (end_tag
           (tag_name)))
+      (text)
       (end_tag
         (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (script_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (style_element
+    (start_tag
+      (tag_name))
+    (text)
+    (end_tag
+      (tag_name)))
+  (json_config_element
+    (start_tag
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
     (text)
     (end_tag
       (tag_name))))
 
 ================================================================================
-Interpolations - Attributes (https://vuejs.org/v2/guide/syntax.html#Attributes)
+MPX Vue 风格指令兼容
 ================================================================================
-
 <template>
-
-<div v-bind:id="dynamicId"></div>
-<button v-bind:disabled="isButtonDisabled">Button</button>
-
+  <view>
+    <text v-if="showText">Vue 风格指令</text>
+    <text v-for="item in items" :key="item.id">{{item.name}}</text>
+    <input v-model="inputValue" />
+    <button @click="handleClick">点击</button>
+  </view>
 </template>
+
+<script>
+createComponent({
+  data: {
+    showText: true,
+    items: [{ id: 1, name: 'Item 1' }],
+    inputValue: ''
+  },
+  methods: {
+    handleClick() {
+      console.log('clicked')
+    }
+  }
+})
+</script>
+
+<style>
+</style>
+
+<script type="application/json">
+{
+  "navigationBarTitleText": "Vue 风格"
+}
+</script>
 
 --------------------------------------------------------------------------------
 
@@ -111,9 +597,36 @@ Interpolations - Attributes (https://vuejs.org/v2/guide/syntax.html#Attributes)
           (directive_argument)
           (quoted_attribute_value
             (attribute_value))))
+        (text)
+        (end_tag
+          (tag_name)))
+    (element
+      (start_tag
+        (tag_name)
+        (directive_attribute
+          (directive_name)
+          (directive_argument)
+          (quoted_attribute_value
+            (attribute_value)))
+        (directive_attribute
+          (directive_name)
+          (directive_argument)
+          (quoted_attribute_value
+            (attribute_value))))
+        (interpolation
+          (raw_text))
+        (end_tag
+          (tag_name)))
+    (element
+      (start_tag
+        (tag_name)
+        (directive_attribute
+          (directive_name)
+          (quoted_attribute_value
+            (attribute_value))))
+      (text)
       (end_tag
         (tag_name)))
-    (text)
     (element
       (start_tag
         (tag_name)
@@ -122,394 +635,34 @@ Interpolations - Attributes (https://vuejs.org/v2/guide/syntax.html#Attributes)
           (directive_argument)
           (quoted_attribute_value
             (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
+        (text)
+        (end_tag
+          (tag_name)))
     (text)
     (end_tag
-      (tag_name))))
-
-================================================================================
-Interpolations - Using JavaScript Expressions (https://vuejs.org/v2/guide/syntax.html#Using-JavaScript-Expressions)
-================================================================================
-
-<template>
-
-{{ number + 1 }}
-
-{{ ok ? 'YES' : 'NO' }}
-
-{{ message.split('').reverse().join('') }}
-
-<div v-bind:id="'list-' + id"></div>
-
-<!-- this is a statement, not an expression: -->
-{{ var a = 1 }}
-
-<!-- flow control won't work either, use ternary expressions -->
-{{ if (ok) { return message } }}
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
+      (tag_name)))
+    (text)
+    (end_tag
+      (tag_name)))
+  (script_element
     (start_tag
       (tag_name))
     (text)
-    (interpolation
-      (raw_text))
-    (text)
-    (interpolation
-      (raw_text))
-    (text)
-    (interpolation
-      (raw_text))
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (end_tag
-        (tag_name)))
-    (text)
-    (comment)
-    (text)
-    (interpolation
-      (raw_text))
-    (text)
-    (comment)
-    (text)
-    (interpolation
-      (raw_text))
-    (text)
     (end_tag
-      (tag_name))))
-
-================================================================================
-Directives - Directives (https://vuejs.org/v2/guide/syntax.html#Directives)
-================================================================================
-
-<template>
-
-<p v-if="seen">Now you see me</p>
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
+      (tag_name)))
+  (style_element
     (start_tag
       (tag_name))
     (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
     (end_tag
-      (tag_name))))
-
-================================================================================
-Directives - Arguments (https://vuejs.org/v2/guide/syntax.html#Arguments)
-================================================================================
-
-<template>
-
-<a v-bind:href="url"> ... </a>
-<a v-on:click="doSomething"> ... </a>
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
+      (tag_name)))
+  (json_config_element
     (start_tag
-      (tag_name))
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (end_tag
-      (tag_name))))
-
-================================================================================
-Directives - Dynamic Arguments (https://vuejs.org/v2/guide/syntax.html#Dynamic-Arguments)
-================================================================================
-
-<template>
-
-<!--
-Note that there are some constraints to the argument expression, as explained
-in the "Dynamic Argument Expression Constraints" section below.
--->
-<a v-bind:[attributeName]="url"> ... </a>
-<a v-on:[eventName]="doSomething"> ... </a>
-
-<!-- This will trigger a compiler warning. -->
-<a v-bind:['foo' + bar]="value"> ... </a>
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
-    (start_tag
-      (tag_name))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_dynamic_argument
-            (directive_dynamic_argument_value))
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_dynamic_argument
-            (directive_dynamic_argument_value))
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_dynamic_argument
-            (ERROR
-              (UNEXPECTED 'f')
-              (UNEXPECTED '+')))
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (end_tag
-      (tag_name))))
-
-================================================================================
-Directives - Modifiers (https://vuejs.org/v2/guide/syntax.html#Modifiers)
-================================================================================
-
-<template>
-
-<form v-on:submit.prevent="onSubmit"> ... </form>
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
-    (start_tag
-      (tag_name))
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (directive_modifiers
-            (directive_modifier))
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (end_tag
-      (tag_name))))
-
-================================================================================
-Shorthands - v-bind Shorthand (https://vuejs.org/v2/guide/syntax.html#v-bind-Shorthand)
-================================================================================
-
-<template>
-
-<!-- full syntax -->
-<a v-bind:href="url"> ... </a>
-
-<!-- shorthand -->
-<a :href="url"> ... </a>
-
-<!-- shorthand with dynamic argument (2.6.0+) -->
-<a :[key]="url"> ... </a>
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
-    (start_tag
-      (tag_name))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_dynamic_argument
-            (directive_dynamic_argument_value))
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (end_tag
-      (tag_name))))
-
-================================================================================
-Shorthands - v-on Shorthand (https://vuejs.org/v2/guide/syntax.html#v-on-Shorthand)
-================================================================================
-
-<template>
-
-<!-- full syntax -->
-<a v-on:click="doSomething"> ... </a>
-
-<!-- shorthand -->
-<a @click="doSomething"> ... </a>
-
-<!-- shorthand with dynamic argument (2.6.0+) -->
-<a @[event]="doSomething"> ... </a>
-
-</template>
-
---------------------------------------------------------------------------------
-
-(component
-  (template_element
-    (start_tag
-      (tag_name))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_argument)
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
-    (text)
-    (comment)
-    (text)
-    (element
-      (start_tag
-        (tag_name)
-        (directive_attribute
-          (directive_name)
-          (directive_dynamic_argument
-            (directive_dynamic_argument_value))
-          (quoted_attribute_value
-            (attribute_value))))
-      (text)
-      (end_tag
-        (tag_name)))
+      (tag_name)
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))
     (text)
     (end_tag
       (tag_name))))

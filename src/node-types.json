@@ -39,6 +39,10 @@
           "named": true
         },
         {
+          "type": "json_config_element",
+          "named": true
+        },
+        {
           "type": "script_element",
           "named": true
         },
@@ -157,6 +161,10 @@
           "named": true
         },
         {
+          "type": "json_config_element",
+          "named": true
+        },
+        {
           "type": "script_element",
           "named": true
         },
@@ -214,6 +222,29 @@
     }
   },
   {
+    "type": "event_binding",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_value",
+          "named": true
+        },
+        {
+          "type": "event_name",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "interpolation",
     "named": true,
     "fields": {},
@@ -223,6 +254,84 @@
       "types": [
         {
           "type": "raw_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "json_config_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "json_name_attribute",
+          "named": true
+        },
+        {
+          "type": "json_type_attribute",
+          "named": true
+        },
+        {
+          "type": "lang_attribute",
+          "named": true
+        },
+        {
+          "type": "other_attribute",
+          "named": true
+        },
+        {
+          "type": "raw_text",
+          "named": true
+        },
+        {
+          "type": "setup_attribute",
+          "named": true
+        },
+        {
+          "type": "src_attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "json_name_attribute",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "json_type_attribute",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "lang_attribute",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_attribute",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "other_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
           "named": true
         }
       ]
@@ -252,7 +361,11 @@
       "required": true,
       "types": [
         {
-          "type": "end_tag",
+          "type": "lang_attribute",
+          "named": true
+        },
+        {
+          "type": "other_attribute",
           "named": true
         },
         {
@@ -260,7 +373,11 @@
           "named": true
         },
         {
-          "type": "start_tag",
+          "type": "setup_attribute",
+          "named": true
+        },
+        {
+          "type": "src_attribute",
           "named": true
         }
       ]
@@ -283,7 +400,39 @@
           "named": true
         },
         {
+          "type": "event_binding",
+          "named": true
+        },
+        {
+          "type": "mode_attribute",
+          "named": true
+        },
+        {
           "type": "tag_name",
+          "named": true
+        },
+        {
+          "type": "wx_directive_attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "setup_attribute",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "src_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "quoted_attribute_value",
           "named": true
         }
       ]
@@ -306,7 +455,35 @@
           "named": true
         },
         {
+          "type": "event_binding",
+          "named": true
+        },
+        {
+          "type": "lang_attribute",
+          "named": true
+        },
+        {
+          "type": "mode_attribute",
+          "named": true
+        },
+        {
+          "type": "other_attribute",
+          "named": true
+        },
+        {
+          "type": "setup_attribute",
+          "named": true
+        },
+        {
+          "type": "src_attribute",
+          "named": true
+        },
+        {
           "type": "tag_name",
+          "named": true
+        },
+        {
+          "type": "wx_directive_attribute",
           "named": true
         }
       ]
@@ -364,6 +541,10 @@
           "named": true
         },
         {
+          "type": "json_config_element",
+          "named": true
+        },
+        {
           "type": "script_element",
           "named": true
         },
@@ -392,7 +573,74 @@
     "fields": {}
   },
   {
+    "type": "wx_directive_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_value",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\"ali\"",
+    "named": false
+  },
+  {
+    "type": "\"application/json\"",
+    "named": false
+  },
+  {
+    "type": "\"javascript\"",
+    "named": false
+  },
+  {
+    "type": "\"jd\"",
+    "named": false
+  },
+  {
+    "type": "\"js\"",
+    "named": false
+  },
+  {
+    "type": "\"json\"",
+    "named": false
+  },
+  {
+    "type": "\"qq\"",
+    "named": false
+  },
+  {
+    "type": "\"swan\"",
+    "named": false
+  },
+  {
+    "type": "\"ts\"",
+    "named": false
+  },
+  {
+    "type": "\"tt\"",
+    "named": false
+  },
+  {
+    "type": "\"typescript\"",
+    "named": false
+  },
+  {
+    "type": "\"weixin\"",
     "named": false
   },
   {
@@ -420,6 +668,14 @@
     "named": false
   },
   {
+    "type": "</script>",
+    "named": false
+  },
+  {
+    "type": "<script",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -444,6 +700,22 @@
     "named": true
   },
   {
+    "type": "bind",
+    "named": false
+  },
+  {
+    "type": "capture-bind",
+    "named": false
+  },
+  {
+    "type": "capture-catch",
+    "named": false
+  },
+  {
+    "type": "catch",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true
   },
@@ -460,12 +732,84 @@
     "named": true
   },
   {
+    "type": "event_name",
+    "named": true
+  },
+  {
+    "type": "lang",
+    "named": false
+  },
+  {
+    "type": "mode",
+    "named": false
+  },
+  {
+    "type": "name",
+    "named": false
+  },
+  {
     "type": "raw_text",
     "named": true
   },
   {
+    "type": "setup",
+    "named": false
+  },
+  {
+    "type": "src",
+    "named": false
+  },
+  {
     "type": "tag_name",
     "named": true
+  },
+  {
+    "type": "type",
+    "named": false
+  },
+  {
+    "type": "wx:elif",
+    "named": false
+  },
+  {
+    "type": "wx:else",
+    "named": false
+  },
+  {
+    "type": "wx:for",
+    "named": false
+  },
+  {
+    "type": "wx:for-index",
+    "named": false
+  },
+  {
+    "type": "wx:for-item",
+    "named": false
+  },
+  {
+    "type": "wx:for-track",
+    "named": false
+  },
+  {
+    "type": "wx:hidden",
+    "named": false
+  },
+  {
+    "type": "wx:if",
+    "named": false
+  },
+  {
+    "type": "wx:key",
+    "named": false
+  },
+  {
+    "type": "wx:model",
+    "named": false
+  },
+  {
+    "type": "wx:show",
+    "named": false
   },
   {
     "type": "{{",

@@ -1,5 +1,37 @@
+# 构建目录
 /build
+/target
+
+# 依赖目录
 /node_modules
 
+# Tree-sitter 特定
 /bindings/rust
 /Cargo.toml
+
+# 编译中间产物
+*.exp
+*.lib
+*.obj
+*.o
+*.so
+*.dll
+*.dylib
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*~
+
+# 临时文件
+*.tmp
+*.temp
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log

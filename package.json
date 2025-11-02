@@ -1,18 +1,21 @@
 {
-  "name": "tree-sitter-vue",
-  "version": "0.2.1",
-  "description": "Vue grammar for tree-sitter",
+  "name": "tree-sitter-mpx",
+  "version": "1.0.0",
+  "description": "MPX framework grammar for tree-sitter",
   "keywords": [
     "parser",
-    "lexer"
+    "lexer",
+    "mpx",
+    "miniprogram",
+    "didi"
   ],
   "main": "bindings/node",
-  "repository": "https://github.com/ikatyang/tree-sitter-vue",
-  "homepage": "https://github.com/ikatyang/tree-sitter-vue#readme",
+  "repository": "https://github.com/cheironz/tree-sitter-mpx",
+  "homepage": "https://github.com/cheironz/tree-sitter-mpx#readme",
   "author": {
-    "name": "Ika",
-    "email": "ikatyang@gmail.com",
-    "url": "https://github.com/ikatyang"
+    "name": "Cheiron",
+    "email": "cheiron@example.com",
+    "url": "https://github.com/cheironz"
   },
   "license": "MIT",
   "scripts": {
